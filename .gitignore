@@ -1,0 +1,23 @@
+# Libraries (installed with npm install)
+node_modules/
+
+# Build output
+laptop/dist/
+mobile/android/
+mobile/ios/
+mobile/.expo/
+mobile/modules/*/android/build/
+.gradle/
+.kotlin/
+release/
+
+# NEVER publish the Android signing key
+mobile/keystore/
+*.jks
+*.keystore
+keystore.properties
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db

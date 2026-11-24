@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+  android:accessibilityEventTypes="typeViewClicked|typeViewLongClicked|typeWindowStateChanged|typeNotificationStateChanged|typeAnnouncement"
+  android:accessibilityFeedbackType="feedbackGeneric"
+  android:accessibilityFlags="flagDefault"
+  android:canRetrieveWindowContent="false"
+  android:notificationTimeout="100"
+  android:description="@string/simple_copy_watch_description" />

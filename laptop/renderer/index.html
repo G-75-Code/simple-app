@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'" />
+    <title>Simple</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand-row">
+        <button id="logo-btn" class="logo" title="Menu" disabled>S</button>
+        <span class="brand">Simple</span>
+      </div>
+      <button id="dot-btn" class="dot-btn hidden" title="Connected device">
+        <span id="status-dot" class="dot big"></span>
+      </button>
+    </header>
+
+    <main>
+      <!-- Loading -->
+      <section id="loading" class="screen">
+        <p class="muted">Starting…</p>
+      </section>
+
+      <!-- Step 1: QR code -->
+      <section id="qr" class="screen hidden">
+        <h1>Pair your phone</h1>
+        <p class="muted">Open Simple on your phone and scan this code.</p>
+        <div class="qr-box"><img id="qr-img" alt="Pairing QR code" /></div>
+        <p class="small muted">Phone and laptop must be on the same Wi-Fi · <span id="address"></span></p>
+        <button id="new-qr" class="secondary">New QR code</button>
+      </section>
+
+      <!-- Main screen after pairing: features go here -->
+      <section id="paired" class="screen main-screen hidden">
+        <!-- Feature: clipboard sync -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Clipboard sync</h3>
+              <p class="small muted">Copy on one device, paste on the other.</p>
+            </div>
+            <label class="switch" title="Turn clipboard sync on or off">
+              <input type="checkbox" id="clip-toggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Feature: Simple Drop -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Simple Drop</h3>
+              <p class="small muted">Send photos and files. Drag files here to send them to your phone.</p>
+            </div>
+            <label class="switch" title="Turn Simple Drop on or off">
+              <input type="checkbox" id="drop-toggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <button id="drop-location" class="location-row">Select your drop location</button>
+          <button id="drop-change" class="change-link hidden">Do you want to change the location?</button>
+        </div>
+      </section>
+
+      <!-- Error -->
+      <section id="error" class="screen hidden">
+        <h1>Something went wrong</h1>
+        <p id="error-text" class="muted"></p>
+        <button id="retry" class="secondary">Try again</button>
+      </section>
+    </main>
+
+    <!-- Step 2: OTP popup -->
+    <div id="otp-modal" class="overlay hidden">
+      <div class="modal">
+        <p class="muted">Phone found: <strong id="otp-device"></strong></p>
+        <h2>Enter this code on your phone</h2>
+        <div id="otp-code" class="otp"></div>
+        <p class="small muted">Expires in <span id="otp-timer">2:00</span></p>
+      </div>
+    </div>
+
+    <!-- Logo popup: menu with Unpair -->
+    <div id="menu-popup" class="overlay popup-overlay hidden">
+      <div class="modal popup">
+        <div class="popup-header">
+          <h3>Simple</h3>
+          <button class="close-btn" data-close title="Close">✕</button>
+        </div>
+        <button id="unpair" class="popup-item">Unpair</button>
+      </div>
+    </div>
+
+    <!-- Green dot popup: connected device info -->
+    <div id="device-popup" class="overlay popup-overlay hidden">
+      <div class="modal popup">
+        <div class="popup-header">
+          <h3>Connected device</h3>
+          <button class="close-btn" data-close title="Close">✕</button>
+        </div>
+        <div class="info-row"><span class="muted">Name</span><strong id="info-name"></strong></div>
+        <div class="info-row">
+          <span class="muted">Status</span>
+          <strong class="status-inline"><span id="info-dot" class="dot"></span><span id="info-status"></span></strong>
+        </div>
+        <div class="info-row"><span class="muted">Address</span><strong id="info-address"></strong></div>
+        <div id="info-paired-row" class="info-row"><span class="muted">Paired on</span><strong id="info-paired"></strong></div>
+      </div>
+    </div>
+
+    <!-- Simple Drop: change location popup -->
+    <div id="drop-popup" class="overlay popup-overlay hidden">
+      <div class="modal popup">
+        <div class="popup-header">
+          <h3>Drop location</h3>
+          <button class="close-btn" data-close title="Close">✕</button>
+        </div>
+        <div class="info-row column">
+          <span class="muted">Current location</span>
+          <strong id="drop-current" class="path"></strong>
+        </div>
+        <button id="drop-change-btn" class="popup-item primary">Change location</button>
+      </div>
+    </div>
+
+    <!-- Simple Drop: shown while dragging files over the window -->
+    <div id="drag-overlay" class="drag-overlay hidden">
+      <div class="drag-box">Drop to send to your phone</div>
+    </div>
+
+    <!-- Small status messages -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "Simple",
+    "slug": "simple",
+    "scheme": "simpleapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.simpleapp.mobile",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#4f5bd5",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "./plugins/withReleaseSigning",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Simple needs the camera to scan the pairing QR code.",
+          "recordAudioAndroid": false
+        }
+      ]
+    ]
+  }
+}

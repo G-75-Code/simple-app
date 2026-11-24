@@ -1,0 +1,51 @@
+{
+  "name": "simple-laptop",
+  "productName": "Simple",
+  "version": "1.0.0",
+  "description": "Simple - clipboard sync and file drop between your phone and laptop",
+  "author": "Simple",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "start:test": "electron . --test",
+    "dist": "electron-builder --win nsis --x64"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "ws": "^8.23.0"
+  },
+  "devDependencies": {
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.simpleapp.laptop",
+    "productName": "Simple",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "secure.js",
+      "renderer/**",
+      "assets/**",
+      "package.json"
+    ],
+    "win": {
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Simple",
+      "runAfterFinish": true,
+      "artifactName": "Simple-Setup-${version}.${ext}"
+    }
+  }
+}
